@@ -10,21 +10,20 @@ import Users from './pages/Users';
 import About from './pages/About';
 import Home from './pages/Home';
 import Sidebar from "./parts/Sidebar";
+import {Container} from "@material-ui/core";
 
 function App() {
     return (
-        <div className="App">
+        <Container className="App">
             <Router>
                 <Sidebar></Sidebar>
-                <div className="contents">
-                    <Switch>
-                        <Route path="/about" component={About}></Route>
-                        <Route path="/users" component={Users}></Route>
-                        <Route path="/" component={Home}></Route>
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route path="/about" component={About}></Route>
+                    <Route path="/users" component={Users}></Route>
+                    <Route path="/" component={Home}></Route>
+                </Switch>
             </Router>
-        </div>
+        </Container>
     );
 }
 
