@@ -17,7 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import {Link} from "react-router-dom";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -92,6 +92,16 @@ function Sidebar() {
 
     const handleDrawerToggle = () => {
         const toggle = !open
+
+        console.log('test');
+        axios.get("/test")
+            .then(({data}) => {
+                console.log(data);
+            })
+            .catch(e => {  // API 호출이 실패한 경우
+                console.error(e);  // 에러표시
+            });
+
         setOpen(toggle);
     };
 
