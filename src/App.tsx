@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Users from './pages/Users';
 import About from './pages/About';
 import Home from './pages/Home';
-import Sidebar from "./parts/Sidebar";
+import Sidebar from './parts/Sidebar';
 import {Container} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            maxWidth : 'initial'
+            maxWidth: 'initial'
         },
         appBar: {
             zIndex: theme.zIndex.drawer + 1
@@ -79,7 +79,6 @@ function App() {
 
     const handleDrawerToggle = () => {
         const toggle = !open
-        console.log('test');
         axios.get("/test")
             .then(({data}) => {
                 console.log(data);
@@ -92,50 +91,56 @@ function App() {
     };
 
     return (
-        <Container className={clsx('App',classes.root)}>
+        <Container className={clsx('App', classes.root)}>
             <CssBaseline/>
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerToggle}
-                        edge="start"
-                        className={clsx(classes.menuButton)}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Test Site
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
+            <Router>
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerToggle}
+                            edge="start"
+                            className={clsx(classes.menuButton)}
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" noWrap>
+                            Test Site
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    variant="permanent"
+                    className={clsx(classes.drawer, {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    }),
-                }}
-            >
-                <Toolbar/>
-                <Sidebar></Sidebar>
-            </Drawer>
-            <main className={classes.content}>
-                <Toolbar/>
-                <Router>
+                    })}
+                    classes={{
+                        paper: clsx({
+                            [classes.drawerOpen]: open,
+                            [classes.drawerClose]: !open,
+                        }),
+                    }}
+                >
+                    <Toolbar/>
+                    <Sidebar></Sidebar>
+                </Drawer>
+                <main className={classes.content}>
+                    <Toolbar/>
                     <Switch>
-                        <Route path="/about" component={About}></Route>
-                        <Route path="/users" component={Users}></Route>
-                        <Route path="/" component={Home}></Route>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/users">
+                            <Users />
+                        </Route>
                     </Switch>
-                </Router>
-            </main>
+                </main>
+            </Router>
         </Container>
     );
 }
