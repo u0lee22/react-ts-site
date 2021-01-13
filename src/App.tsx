@@ -9,7 +9,7 @@ import Users from './pages/Users';
 import About from './pages/About';
 import Home from './pages/Home';
 import Sidebar from './parts/Sidebar';
-import {Container} from "@material-ui/core";
+import {Breadcrumbs, Container, Link} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme: Theme) =>
 function App() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-    const theme = useTheme();
 
     const handleDrawerToggle = () => {
         const toggle = !open
@@ -128,6 +127,15 @@ function App() {
                 </Drawer>
                 <main className={classes.content}>
                     <Toolbar/>
+                    <Breadcrumbs aria-label="breadcrumb">
+                        <Link color="inherit" href="/">
+                            Material-UI
+                        </Link>
+                        <Link color="inherit" href="/about">
+                            Core
+                        </Link>
+                        <Typography color="textPrimary">Breadcrumb</Typography>
+                    </Breadcrumbs>
                     <Switch>
                         <Route exact path="/">
                             <Home />
