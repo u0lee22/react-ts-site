@@ -17,7 +17,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from "@material-ui/icons/Menu";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import {createStyles, makeStyles, Theme, useTheme} from "@material-ui/core/styles";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 
 
